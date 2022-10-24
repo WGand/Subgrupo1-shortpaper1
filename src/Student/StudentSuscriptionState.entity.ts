@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 import { StudentSuscriptionStateEnum } from './StudentSuscriptionStateEnum';
 
 @Entity('StudentSuscriptionState')
-export class Student extends BaseEntity {
+export class StudentSuscriptionState extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

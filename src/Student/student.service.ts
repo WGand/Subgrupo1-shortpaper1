@@ -14,6 +14,11 @@ export class StudentService {
     return await this.studentRepository.find();
   }
 
+  // async paySuscription(studentId: string): boolean {
+  // let student = await this.studentRepository.findOneById(studentId);
+  // student.
+  // }
+
   async findStudent(studentId: string) {
     return await this.studentRepository.findOne({
       where: { id: parseInt(studentId) },
