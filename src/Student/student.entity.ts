@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { StudentSuscriptionState } from './StudentSuscriptionState.entity';
 
 @Entity('student')
 export class Student extends BaseEntity {
@@ -10,4 +18,8 @@ export class Student extends BaseEntity {
 
   @Column()
   surname: string;
+
+  @OneToOne(() => StudentSuscriptionState)
+  @JoinColumn()
+  suscriptionState: StudentSuscriptionState;
 }
