@@ -10,13 +10,13 @@ import { StudentSuscriptionState } from './StudentSuscriptionState.entity';
 
 @Entity('student')
 export class Student extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id_student', type: 'integer' })
   id: number;
 
-  @Column()
+  @Column({ name: 'name', type: 'varchar' })
   name: string;
 
-  @Column()
+  @Column({ name: 'surname', type: 'varchar' })
   surname: string;
 
   @OneToOne(() => StudentSuscriptionState)

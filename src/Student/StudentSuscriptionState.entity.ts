@@ -3,21 +3,24 @@ import { StudentSuscriptionStateEnum } from './StudentSuscriptionStateEnum';
 
 @Entity('StudentSuscriptionState')
 export class StudentSuscriptionState extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({
+    name: 'id_studentsuscriptionstate',
+    type: 'integer',
+  })
   id: number;
 
-  @Column()
+  @Column({ name: 'cost', type: 'integer' })
   cost: number;
 
   @Column()
   type: StudentSuscriptionStateEnum;
 
-  @Column()
+  @Column({ name: 'createdAt', type: 'date' })
   createdAt: Date;
 
-  @Column()
+  @Column({ name: 'paidAt', type: 'date' })
   paidAt: Date;
 
-  @Column()
+  @Column({ name: 'closedAt', type: 'date' })
   closedAt: Date;
 }

@@ -15,15 +15,15 @@ const StudentSuscriptionState_entity_1 = require("./StudentSuscriptionState.enti
 let Student = class Student extends typeorm_1.BaseEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id_student', type: 'integer' }),
     __metadata("design:type", Number)
 ], Student.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ name: 'name', type: 'varchar' }),
     __metadata("design:type", String)
 ], Student.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ name: 'surname', type: 'varchar' }),
     __metadata("design:type", String)
 ], Student.prototype, "surname", void 0);
 __decorate([
