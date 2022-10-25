@@ -8,10 +8,14 @@ import { MessageService } from './Message/message.service';
 import { MessageController } from './Message/message.controller';
 import { TypeLessonService } from './type-lesson/type-lesson.service';
 import { TypeLessonController } from './type-lesson/type-lesson.controller';
-import { StrategyImageModule } from './strategy-image/strategy-image.module';
+import { StrategyImageModule } from './strategy-image/strategyImage.module';
 
 @Module({
-  imports: [StudentModule, TypeOrmModule.forRoot(typeOrmConfig), StrategyImageModule],
+  imports: [
+    StudentModule,
+    TypeOrmModule.forRoot(typeOrmConfig),
+    StrategyImageModule,
+  ],
   controllers: [AppController, MessageController, TypeLessonController],
   providers: [AppService, MessageService, TypeLessonService],
 })
