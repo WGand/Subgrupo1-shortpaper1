@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], Student.prototype, "surname", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'suscription_id' }),
+    (0, typeorm_1.Column)({ name: 'suscription_id', nullable: true }),
     __metadata("design:type", Number)
 ], Student.prototype, "suscriptionState_id", void 0);
 __decorate([
