@@ -13,6 +13,12 @@ export class Student extends BaseEntity {
   @PrimaryGeneratedColumn({ name: 'id_student', type: 'integer' })
   id: number;
 
+  @Column({ name: 'email', type: 'varchar' })
+  email: string;
+
+  @Column({ name: 'password', type: 'varchar' })
+  password: string;
+
   @Column({ name: 'name', type: 'varchar' })
   name: string;
 

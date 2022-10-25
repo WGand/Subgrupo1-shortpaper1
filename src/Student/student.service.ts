@@ -22,7 +22,7 @@ export class StudentService {
     const student = await this.studentRepository.findOne({
       where: { id: parseInt(studentId) },
     });
-    student.suscriptionState = new StudentSuscriptionState();
+    student.suscriptionState = new StudentSuscriptionState(); //preguntar si existe other crear
     student.suscriptionState.type = StudentSuscriptionStateEnum.Monthly;
     return this.studentRepository.save(student);
   }
@@ -34,8 +34,8 @@ export class StudentService {
     console.log(student);
     student.suscriptionState =
       await this.studentSuscriptionStateRepository.findOne({
-        where: { id: student.suscriptionState.id },
-      }); //buscar, no crear!!
+        where: { id: student.suscriptionState_id },
+      });
     student.suscriptionState.type = StudentSuscriptionStateEnum.Blocked;
     return this.studentRepository.save(student);
   }
