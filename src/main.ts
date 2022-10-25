@@ -10,3 +10,7 @@ async function bootstrap() {
 }
 bootstrap();
 //THIS IS A COMIT TEST
+<<<<<<< HEAD
+=======
+//Pruebita
+>>>>>>> master
