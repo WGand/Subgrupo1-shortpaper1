@@ -31,10 +31,10 @@ export class CourseController {
   }
 
   @Put(':CourseId')
-  updateStudent(
+  updateCourse(
     @Param('CourseId') CourseId: string,
     @Body() updateCourse: CreateCourseDto,
   ): Promise<Course> {
-    return this.CourseService.updateStudent(CourseId, updateCourse);
+    return this.CourseService.updateCourse(CourseId, updateCourse);
   }
 }

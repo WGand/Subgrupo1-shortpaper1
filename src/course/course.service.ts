@@ -16,15 +16,15 @@ export class CourseService {
         return await this.CourseRepository.find();
       }  
     
-  createCourse(newStudent: CreateCourseDto): Promise<Course> {
-    return this.CourseRepository.save(newStudent);
+  createCourse(newCourse: CreateCourseDto): Promise<Course> {
+    return this.CourseRepository.save(newCourse);
   }
 
   async deleteCourse(CourseId: string): Promise<any> {
     return await this.CourseRepository.delete({ CourseId: parseInt(CourseId) });
   }
 
-  async updateStudent(
+  async updateCourse(
     CourseId: string,
     newCourse: CreateCourseDto,
   ): Promise<Course> {
