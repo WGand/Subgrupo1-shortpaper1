@@ -1,4 +1,4 @@
-export interface createStudentDto {
+export declare class createStudentDto {
     name: string;
     surname: string;
 }

@@ -42,7 +42,7 @@ let StudentService = class StudentService {
         console.log(student);
         student.suscriptionState =
             await this.studentSuscriptionStateRepository.findOne({
-                where: { id: student.suscriptionState.id },
+                where: { id: student.suscriptionState_id },
             });
         student.suscriptionState.type = StudentSuscriptionStateEnum_1.StudentSuscriptionStateEnum.Blocked;
         return this.studentRepository.save(student);

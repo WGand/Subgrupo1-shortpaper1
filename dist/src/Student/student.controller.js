@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentController = void 0;
 const common_1 = require("@nestjs/common");
+const createStudent_dto_1 = require("./createStudent.dto");
 const student_service_1 = require("./student.service");
 let StudentController = class StudentController {
     constructor(studentService) {
@@ -49,7 +50,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [createStudent_dto_1.createStudentDto]),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "createStudent", null);
 __decorate([
@@ -78,7 +79,7 @@ __decorate([
     __param(0, (0, common_1.Param)('studentId')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, createStudent_dto_1.createStudentDto]),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "updateStudent", null);
 StudentController = __decorate([
