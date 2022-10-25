@@ -23,6 +23,6 @@ export class Student extends BaseEntity {
   suscriptionState_id;
 
   @OneToOne(() => StudentSuscriptionState, { cascade: true })
-  @JoinColumn({ name: 'uscription_id' })
+  @JoinColumn({ name: 'suscription_id' })
   suscriptionState: StudentSuscriptionState;
 }
