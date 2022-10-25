@@ -13,18 +13,14 @@ const config_service_1 = require("../config/config.service");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const student_module_1 = require("./Student/student.module");
-const message_service_1 = require("./Message/message.service");
-const message_controller_1 = require("./Message/message.controller");
 const Course_module_1 = require("./course/Course.module");
-const course_service_1 = require("./course/course.service");
-const course_controller_1 = require("./course/course.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [student_module_1.StudentModule, typeorm_1.TypeOrmModule.forRoot(config_service_1.typeOrmConfig), Course_module_1.CourseModule],
-        controllers: [app_controller_1.AppController, message_controller_1.MessageController, course_controller_1.CourseController],
-        providers: [app_service_1.AppService, message_service_1.MessageService, course_service_1.CourseService],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
