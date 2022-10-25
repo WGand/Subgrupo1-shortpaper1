@@ -37,6 +37,11 @@ export class StudentController {
     return this.studentService.deleteStudent(studentId);
   }
 
+  @Put('pay/:studentId')
+  paySuscription(@Param('studentId') studentId: string): Promise<Student> {
+    return this.studentService.paySuscription(studentId);
+  }
+
   @Put(':studentId')
   updateStudent(
     @Param('studentId') studentId: string,

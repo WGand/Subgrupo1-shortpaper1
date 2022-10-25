@@ -9,18 +9,15 @@ export class StudentSuscriptionState extends BaseEntity {
   })
   id: number;
 
-  @Column({ name: 'cost', type: 'integer' })
+  @Column({ name: 'cost', type: 'integer', default: '9' })
   cost: number;
 
   @Column()
   type: StudentSuscriptionStateEnum;
 
-  @Column({ name: 'createdAt', type: 'date' })
+  @Column({ name: 'createdAt', type: 'date', default: () => 'CURRENT_DATE' })
   createdAt: Date;
 
-  @Column({ name: 'paidAt', type: 'date' })
+  @Column({ name: 'paidAt', type: 'date', default: () => 'CURRENT_DATE' })
   paidAt: Date;
-
-  @Column({ name: 'closedAt', type: 'date' })
-  closedAt: Date;
 }

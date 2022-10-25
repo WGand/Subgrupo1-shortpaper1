@@ -17,12 +17,23 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const student_entity_1 = require("./student.entity");
+const StudentSuscriptionState_entity_1 = require("./StudentSuscriptionState.entity");
+const StudentSuscriptionStateEnum_1 = require("./StudentSuscriptionStateEnum");
 let StudentService = class StudentService {
-    constructor(studentRepository) {
+    constructor(studentRepository, studentSuscriptionState) {
         this.studentRepository = studentRepository;
+        this.studentSuscriptionState = studentSuscriptionState;
     }
     async findAll(params) {
         return await this.studentRepository.find();
+    }
+    async paySuscription(studentId) {
+        const student = await this.studentRepository.findOne({
+            where: { id: parseInt(studentId) },
+        });
+        student.suscriptionState = new StudentSuscriptionState_entity_1.StudentSuscriptionState();
+        student.suscriptionState.type = StudentSuscriptionStateEnum_1.StudentSuscriptionStateEnum.Monthly;
+        return this.studentRepository.save(student);
     }
     async findStudent(studentId) {
         return await this.studentRepository.findOne({
@@ -44,7 +55,9 @@ let StudentService = class StudentService {
 StudentService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(student_entity_1.Student)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(StudentSuscriptionState_entity_1.StudentSuscriptionState)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], StudentService);
 exports.StudentService = StudentService;
 //# sourceMappingURL=student.service.js.map

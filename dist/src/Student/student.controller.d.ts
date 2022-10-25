@@ -7,5 +7,6 @@ export declare class StudentController {
     findStudent(studentId: string): Promise<Student>;
     createStudent(newStudent: createStudentDto): Promise<Student>;
     deleteStudent(studentId: string): Promise<Student>;
+    paySuscription(studentId: string): Promise<Student>;
     updateStudent(studentId: string, updateStudent: createStudentDto): Promise<Student>;
 }

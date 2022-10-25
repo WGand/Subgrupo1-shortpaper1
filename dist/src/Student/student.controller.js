@@ -29,6 +29,9 @@ let StudentController = class StudentController {
     deleteStudent(studentId) {
         return this.studentService.deleteStudent(studentId);
     }
+    paySuscription(studentId) {
+        return this.studentService.paySuscription(studentId);
+    }
     updateStudent(studentId, updateStudent) {
         return this.studentService.updateStudent(studentId, updateStudent);
     }
@@ -54,6 +57,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "deleteStudent", null);
+__decorate([
+    (0, common_1.Put)('pay/:studentId'),
+    __param(0, (0, common_1.Param)('studentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], StudentController.prototype, "paySuscription", null);
 __decorate([
     (0, common_1.Put)(':studentId'),
     __param(0, (0, common_1.Param)('studentId')),
