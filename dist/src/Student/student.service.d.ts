@@ -4,10 +4,11 @@ import { Student } from './student.entity';
 import { StudentSuscriptionState } from './StudentSuscriptionState.entity';
 export declare class StudentService {
     private studentRepository;
-    private studentSuscriptionState;
-    constructor(studentRepository: Repository<Student>, studentSuscriptionState: Repository<StudentSuscriptionState>);
-    findAll(params: any): Promise<Student[]>;
+    private studentSuscriptionStateRepository;
+    constructor(studentRepository: Repository<Student>, studentSuscriptionStateRepository: Repository<StudentSuscriptionState>);
+    findAll(): Promise<Student[]>;
     paySuscription(studentId: string): Promise<Student>;
+    cancelSuscription(studentId: string): Promise<Student>;
     findStudent(studentId: string): Promise<Student>;
     createStudent(newStudent: createStudentDto): Promise<Student>;
     deleteStudent(studentId: string): Promise<any>;
