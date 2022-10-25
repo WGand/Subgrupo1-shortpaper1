@@ -17,10 +17,10 @@ export class Course extends BaseEntity {
   @Column()
   title: string;
 
-  @Column('string', { array: true, default: {} })
+  @Column('text', { array: true, default: {} })
   category: string[];
 
-  @Column('string', { array: true, default: {} })
+  @Column('text', { array: true, default: {} })
   Keywords: string[];
 
   @Column()
