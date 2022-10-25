@@ -6,7 +6,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { Student } from 'src/Student/student.entity';
+import { Student } from 'src/Student/Student.entity';
 import { CourseSuscriptionStateEnum } from './CourseSubscriptionStateEnum';
 
 @Entity('course')
@@ -17,16 +17,16 @@ export class Course extends BaseEntity {
   @Column()
   title: string;
 
-  @Column({ array: true })
+  @Column('string', { array: true, default: {} })
   category: string[];
 
-  @Column({ array: true })
+  @Column('string', { array: true, default: {} })
   Keywords: string[];
 
   @Column()
   state: CourseSuscriptionStateEnum;
 
   @ManyToMany(() => Student)
-  @JoinTable()
+  @JoinTable({ name: 'StudentToCourse' })
   Student: Student[];
 }
