@@ -20,6 +20,6 @@ export class Student extends BaseEntity {
   surname: string;
 
   @OneToOne(() => StudentSuscriptionState)
-  @JoinColumn()
+  @JoinColumn({ name: 'StudentSuscriptionState' })
   suscriptionState: StudentSuscriptionState;
 }
