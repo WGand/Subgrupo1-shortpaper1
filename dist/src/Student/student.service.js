@@ -20,11 +20,11 @@ const student_entity_1 = require("./student.entity");
 const StudentSuscriptionState_entity_1 = require("./StudentSuscriptionState.entity");
 const StudentSuscriptionStateEnum_1 = require("./StudentSuscriptionStateEnum");
 let StudentService = class StudentService {
-    constructor(studentRepository, studentSuscriptionState) {
+    constructor(studentRepository, studentSuscriptionStateRepository) {
         this.studentRepository = studentRepository;
-        this.studentSuscriptionState = studentSuscriptionState;
+        this.studentSuscriptionStateRepository = studentSuscriptionStateRepository;
     }
-    async findAll(params) {
+    async findAll() {
         return await this.studentRepository.find();
     }
     async paySuscription(studentId) {
@@ -33,6 +33,18 @@ let StudentService = class StudentService {
         });
         student.suscriptionState = new StudentSuscriptionState_entity_1.StudentSuscriptionState();
         student.suscriptionState.type = StudentSuscriptionStateEnum_1.StudentSuscriptionStateEnum.Monthly;
+        return this.studentRepository.save(student);
+    }
+    async cancelSuscription(studentId) {
+        const student = await this.studentRepository.findOne({
+            where: { id: parseInt(studentId) },
+        });
+        console.log(student);
+        student.suscriptionState =
+            await this.studentSuscriptionStateRepository.findOne({
+                where: { id: student.suscriptionState.id },
+            });
+        student.suscriptionState.type = StudentSuscriptionStateEnum_1.StudentSuscriptionStateEnum.Blocked;
         return this.studentRepository.save(student);
     }
     async findStudent(studentId) {

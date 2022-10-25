@@ -1,3 +1,4 @@
-export declare class createStudentDto {
-    readonly name: string;
+export interface createStudentDto {
+    name: string;
+    surname: string;
 }
