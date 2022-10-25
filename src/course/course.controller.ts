@@ -8,8 +8,8 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateCourseDto } from './CreateCourseDto';
-import { Course } from './Course.entity';
-import { CourseService } from './Course.service';
+import { Course } from './course.entity';
+import { CourseService } from './course.service';
 
 @Controller('Course')
 export class CourseController {

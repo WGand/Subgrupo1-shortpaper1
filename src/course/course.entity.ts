@@ -6,7 +6,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { Student } from 'src/Student/Student.entity';
+import { Student } from 'src/Student/student.entity';
 import { CourseSuscriptionStateEnum } from './CourseSubscriptionStateEnum';
 
 @Entity('course')
