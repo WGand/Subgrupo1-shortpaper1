@@ -19,7 +19,11 @@ export class Student extends BaseEntity {
   @Column({ name: 'surname', type: 'varchar' })
   surname: string;
 
-  @OneToOne(() => StudentSuscriptionState)
+  @OneToOne(
+    () => StudentSuscriptionState,
+    (StudentSuscriptionState) => StudentSuscriptionState.experiment,
+    { cascade: true },
+  )
   @JoinColumn({ name: 'StudentSuscriptionState' })
   suscriptionState: StudentSuscriptionState;
 }

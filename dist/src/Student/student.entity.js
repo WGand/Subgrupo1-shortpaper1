@@ -27,8 +27,8 @@ __decorate([
     __metadata("design:type", String)
 ], Student.prototype, "surname", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => StudentSuscriptionState_entity_1.StudentSuscriptionState),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.OneToOne)(() => StudentSuscriptionState_entity_1.StudentSuscriptionState, (StudentSuscriptionState) => StudentSuscriptionState.experiment, { cascade: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'StudentSuscriptionState' }),
     __metadata("design:type", StudentSuscriptionState_entity_1.StudentSuscriptionState)
 ], Student.prototype, "suscriptionState", void 0);
 Student = __decorate([
