@@ -11,7 +11,7 @@ import { CourseService } from './course/course.service';
 import { CourseController } from './course/course.controller';
 
 @Module({
-  imports: [StudentModule, TypeOrmModule.forRoot(typeOrmConfig),CourseModule],
+  imports: [StudentModule, TypeOrmModule.forRoot(typeOrmConfig), CourseModule],
   controllers: [AppController, MessageController, CourseController],
   providers: [AppService, MessageService, CourseService],
 })
