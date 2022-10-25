@@ -17,9 +17,8 @@ export class StudentController {
   constructor(private studentService: StudentService) {}
 
   // @Get()
-  // findAll(@Req() request: Request): Student[] {
-  // console.log(request.));
-  // return this.studentService.findAll(request.query);
+  // findAll(): Student[] {
+  // return this.studentService.findAll();
   // }
 
   @Get(':studentId')
@@ -35,6 +34,11 @@ export class StudentController {
   @Delete(':studentId')
   deleteStudent(@Param('studentId') studentId: string): Promise<Student> {
     return this.studentService.deleteStudent(studentId);
+  }
+
+  @Put('cancel/:studentId')
+  cancelSuscription(@Param('studentId') studentId: string): Promise<Student> {
+    return this.studentService.cancelSuscription(studentId);
   }
 
   @Put('pay/:studentId')

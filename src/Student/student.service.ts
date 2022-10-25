@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { createStudentDto } from './createStudent.dto';
@@ -11,10 +11,10 @@ export class StudentService {
   constructor(
     @InjectRepository(Student) private studentRepository: Repository<Student>,
     @InjectRepository(StudentSuscriptionState)
-    private studentSuscriptionState: Repository<StudentSuscriptionState>,
+    private studentSuscriptionStateRepository: Repository<StudentSuscriptionState>,
   ) {}
 
-  async findAll(params): Promise<Student[]> {
+  async findAll(): Promise<Student[]> {
     return await this.studentRepository.find();
   }
 
@@ -27,7 +27,20 @@ export class StudentService {
     return this.studentRepository.save(student);
   }
 
-  async findStudent(studentId: string) {
+  async cancelSuscription(studentId: string): Promise<Student> {
+    const student: Student = await this.studentRepository.findOne({
+      where: { id: parseInt(studentId) },
+    });
+    console.log(student);
+    student.suscriptionState =
+      await this.studentSuscriptionStateRepository.findOne({
+        where: { id: student.suscriptionState.id },
+      }); //buscar, no crear!!
+    student.suscriptionState.type = StudentSuscriptionStateEnum.Blocked;
+    return this.studentRepository.save(student);
+  }
+
+  async findStudent(studentId: string): Promise<Student> {
     return await this.studentRepository.findOne({
       where: { id: parseInt(studentId) },
     });
