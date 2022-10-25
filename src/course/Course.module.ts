@@ -9,4 +9,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [CourseService],
   controllers: [CourseController],
 })
-export class StudentModule {}
+export class CourseModule {}
