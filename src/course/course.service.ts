@@ -21,7 +21,7 @@ export class CourseService {
   }
 
   async deleteCourse(CourseId: string): Promise<any> {
-    return await this.CourseRepository.delete({ Courseid: parseInt(CourseId) });
+    return await this.CourseRepository.delete({ CourseId: parseInt(CourseId) });
   }
 
   async updateStudent(
@@ -35,7 +35,7 @@ export class CourseService {
 
   async findCourse(CourseId: string) {
     return await this.CourseRepository.findOne({
-      where: { id: parseInt(CourseId) },
+      where: { CourseId: parseInt(CourseId) },
     });
   }
 
