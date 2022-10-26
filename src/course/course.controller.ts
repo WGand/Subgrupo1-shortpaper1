@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Options,
   Param,
   Post,
   Put,
@@ -36,5 +37,10 @@ export class CourseController {
     @Body() updateCourse: CreateCourseDto,
   ): Promise<Course> {
     return this.CourseService.updateCourse(CourseId, updateCourse);
+  }
+
+  @Options(':CourseId')
+  PublishCourse(@Param('CourseId') CourseId: string): Promise<Course> {
+    return this.CourseService.PublishCourse(CourseId);
   }
 }
