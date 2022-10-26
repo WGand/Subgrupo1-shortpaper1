@@ -26,7 +26,7 @@ export class Course extends BaseEntity {
   @Column()
   state: CourseSuscriptionStateEnum;
 
-  @ManyToMany(() => Student)
+  @ManyToMany(() => Student { cascade: true })
   @JoinTable({ name: 'StudentToCourse' })
   Student: Student[];
 }
