@@ -6,14 +6,14 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { StudentSuscriptionState } from './StudentSuscriptionState.entity';
+import { StudentSuscriptionState } from './../studentsuscriptionstate/StudentSuscriptionState.entity';
 
 @Entity('student')
 export class Student extends BaseEntity {
   @PrimaryGeneratedColumn({ name: 'id_student', type: 'integer' })
   id: number;
 
-  @Column({ name: 'email', type: 'varchar' })
+  @Column({ name: 'email', type: 'varchar', unique: true })
   email: string;
 
   @Column({ name: 'password', type: 'varchar' })
