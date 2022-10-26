@@ -45,10 +45,4 @@ export class CourseController {
     return this.CourseService.PublishCourse(CourseId);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  InsertStudent(@Request() req):Promise<any>{
-    return StudentService.;
-  }
-
 }
