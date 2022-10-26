@@ -1,65 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  PreconditionFailedException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { createStudentDto } from './createStudent.dto';
 import { Student } from './student.entity';
-import { StudentSuscriptionState } from './StudentSuscriptionState.entity';
-import { StudentSuscriptionStateEnum } from './StudentSuscriptionStateEnum';
+import { updateStudentDto } from './updateStudent.dto';
 
 @Injectable()
 export class StudentService {
   constructor(
     @InjectRepository(Student) private studentRepository: Repository<Student>,
-    @InjectRepository(StudentSuscriptionState)
-    private studentSuscriptionStateRepository: Repository<StudentSuscriptionState>,
   ) {}
 
-  async findAll(): Promise<Student[]> {
-    return await this.studentRepository.find();
+  async areCredentialsValid(email: string) {
+    const user = await this.studentRepository.findOne({
+      where: { email: email },
+    });
+
+    if (user) {
+      return user;
+    }
+    throw new UnauthorizedException('invalido');
   }
 
-  async paySuscription(studentId: string): Promise<Student> {
-    const student = await this.studentRepository.findOne({
-      where: { id: parseInt(studentId) },
-    });
-    student.suscriptionState = new StudentSuscriptionState();
-    student.suscriptionState.type = StudentSuscriptionStateEnum.Monthly;
-    return this.studentRepository.save(student);
+  async findOne(email: string) {
+    return this.areCredentialsValid(email);
   }
 
-  async cancelSuscription(studentId: string): Promise<Student> {
-    const student: Student = await this.studentRepository.findOne({
-      where: { id: parseInt(studentId) },
-    });
-    console.log(student);
-    student.suscriptionState =
-      await this.studentSuscriptionStateRepository.findOne({
-        where: { id: student.suscriptionState.id },
-      }); //buscar, no crear!!
-    student.suscriptionState.type = StudentSuscriptionStateEnum.Blocked;
-    return this.studentRepository.save(student);
-  }
+  async findStudent(email: string): Promise<any> {
+    const { password, ...result } = await this.findOne(email);
 
-  async findStudent(studentId: string): Promise<Student> {
-    return await this.studentRepository.findOne({
-      where: { id: parseInt(studentId) },
-    });
+    return result;
   }
 
   createStudent(newStudent: createStudentDto): Promise<Student> {
+    const user = this.studentRepository.findOne({
+      where: { email: newStudent.email },
+    });
+    if (!user) {
+      console.log(!user);
+      throw new PreconditionFailedException('usuario existente');
+    }
     return this.studentRepository.save(newStudent);
   }
 
-  async deleteStudent(studentId: string): Promise<any> {
-    return await this.studentRepository.delete({ id: parseInt(studentId) });
+  async deleteStudent(email: string): Promise<any> {
+    return await this.findOne(email);
   }
 
   async updateStudent(
-    studentId: string,
-    newStudent: createStudentDto,
-  ): Promise<Student> {
-    const toUpdate = await this.studentRepository.findOneById(studentId);
-    const updated = Object.assign(toUpdate, newStudent);
+    email: string,
+    newStudent: updateStudentDto,
+  ): Promise<any> {
+    const user = await this.findOne(email);
+    if (!user) {
+      throw new PreconditionFailedException('usuario existente');
+    }
+    const updated = Object.assign(user, newStudent);
     return this.studentRepository.save(updated);
   }
 }

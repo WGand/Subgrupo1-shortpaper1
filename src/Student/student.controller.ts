@@ -6,51 +6,53 @@ import {
   Param,
   Post,
   Put,
-  Req,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthService } from 'src/auth/auth.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { createStudentDto } from './createStudent.dto';
 import { Student } from './student.entity';
 import { StudentService } from './student.service';
+import { updateStudentDto } from './updateStudent.dto';
 
 @Controller('student')
 export class StudentController {
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    private authService: AuthService,
+  ) {}
 
-  // @Get()
-  // findAll(): Student[] {
-  // return this.studentService.findAll();
-  // }
-
-  @Get(':studentId')
-  findStudent(@Param('studentId') studentId: string): Promise<Student> {
-    return this.studentService.findStudent(studentId);
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  findStudent(@Request() req): Promise<any> {
+    return this.studentService.findStudent(req.user.email);
   }
 
   @Post()
-  createStudent(@Body() newStudent: createStudentDto): Promise<Student> {
+  signUp(@Body() newStudent: createStudentDto): Promise<Student> {
     return this.studentService.createStudent(newStudent);
   }
 
-  @Delete(':studentId')
-  deleteStudent(@Param('studentId') studentId: string): Promise<Student> {
-    return this.studentService.deleteStudent(studentId);
+  @UseGuards(JwtAuthGuard)
+  @Delete()
+  deleteStudent(@Request() req): Promise<any> {
+    return this.studentService.deleteStudent(req.user.email);
   }
 
-  @Put('cancel/:studentId')
-  cancelSuscription(@Param('studentId') studentId: string): Promise<Student> {
-    return this.studentService.cancelSuscription(studentId);
-  }
-
-  @Put('pay/:studentId')
-  paySuscription(@Param('studentId') studentId: string): Promise<Student> {
-    return this.studentService.paySuscription(studentId);
-  }
-
-  @Put(':studentId')
+  @UseGuards(JwtAuthGuard)
+  @Put()
   updateStudent(
-    @Param('studentId') studentId: string,
-    @Body() updateStudent: createStudentDto,
+    @Request() req,
+    @Body() updateStudent: updateStudentDto,
   ): Promise<Student> {
-    return this.studentService.updateStudent(studentId, updateStudent);
+    return this.studentService.updateStudent(req.user.email, updateStudent);
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 }

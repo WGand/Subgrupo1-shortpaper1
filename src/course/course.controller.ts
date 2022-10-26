@@ -11,7 +11,6 @@ import {
 import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './Course.entity';
 import { CourseService } from './Course.service';
-import { StudentService } from 'src/Student/student.service';
 
 @Controller('Course')
 export class CourseController {
