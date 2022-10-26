@@ -3,33 +3,27 @@ import nodemailer = require('nodemailer');
 
 @Injectable()
 export class MailDecoratorService {
-
   //Codigo tomado y adaptado desde nodemailer
-  async enviarcorreo(){ 
-    
-     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.email",
-        port: 465,
-        secure: true, // true for 465, false for other ports
-        auth: {
-          user: 'corsiucabdonotreply@gmail.com', // generated ethereal user
-          pass: 'Calonzo123*', // generated ethereal password
-        },
-      });
+  async enviarcorreo(email: string, message: string, subject: string) {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.email',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: 'corsiucabdonotreply@gmail.com', // generated ethereal user
+        pass: 'Calonzo123*', // generated ethereal password
+      },
+    });
+    await transporter.sendMail({
+      from: '"DoNotReply" <corsiucabdonotreply@gmail.com>', // sender address
+      to: `${email}`, // list of receivers
+      subject: `${subject}`, // Subject line
+      text: `${message}`, // plain text body
+      html: `<b>${message}</b>`, // html body
+    });
 
-      await transporter.sendMail({
-        from: '"Fred Foo 👻" <corsiucabdonotreply@gmail.com>', // sender address
-        to: "marcosjduque2@gmail.com", // list of receivers
-        subject: "Prueba", // Subject line
-        text: "Hola?", // plain text body
-        html: "<b>Hola?</b>", // html body
-      });
-
-      transporter.verify().then(()=> {
-        
-        console.log('Ready to send');
-
-      });
-}
-
+    transporter.verify().then(() => {
+      console.log('Ready to send');
+    });
+  }
 }
