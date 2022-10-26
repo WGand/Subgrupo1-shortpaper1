@@ -1,4 +1,3 @@
-
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -7,15 +6,14 @@ import { Course } from './course.entity';
 
 @Injectable()
 export class CourseService {
+  constructor(
+    @InjectRepository(Course) private CourseRepository: Repository<Course>,
+  ) {}
 
-    constructor(
-        @InjectRepository(Course) private CourseRepository: Repository<Course>,
-      ) {}
-    
-      async findAll(params): Promise<Course[]> {
-        return await this.CourseRepository.find();
-      }  
-    
+  async findAll(params): Promise<Course[]> {
+    return await this.CourseRepository.find();
+  }
+
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
     return this.CourseRepository.save(newCourse);
   }
@@ -39,5 +37,10 @@ export class CourseService {
     });
   }
 
+  async PublishCourse(CourseId: string): Promise<Course> {
+    const ToPublish = await this.CourseRepository.findOneById(CourseId);
+    ToPublish.state = 2;
+    console.log('Se ha publicado el curso');
+    return this.CourseRepository.save(ToPublish);
+  }
 }
-

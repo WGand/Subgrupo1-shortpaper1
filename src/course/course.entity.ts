@@ -23,10 +23,10 @@ export class Course extends BaseEntity {
   @Column('text', { array: true, default: {} })
   Keywords: string[];
 
-  @Column()
+  @Column( {  default: 1 })
   state: CourseSuscriptionStateEnum;
 
-  @ManyToMany(() => Student { cascade: true })
+  @ManyToMany(() => Student, { cascade: true })
   @JoinTable({ name: 'StudentToCourse' })
   Student: Student[];
 }
