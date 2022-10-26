@@ -5,6 +5,7 @@ import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './course.entity';
 import { CourseStateEnum } from './CourseStateEnum';
 
+
 @Injectable()
 export class CourseService {
   constructor(
@@ -16,7 +17,6 @@ export class CourseService {
   }
 
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
-
     return this.CourseRepository.save(newCourse);
   }
 
