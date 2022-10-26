@@ -5,12 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentModule } from './Student/student.module';
 import { CourseModule } from './course/Course.module';
-import { LessonService } from './lesson/lesson.service';
-import { LessonController } from './lesson/lesson.controller';
+import { LessonModule } from './lesson/lesson.module';
 
 @Module({
-  imports: [StudentModule, TypeOrmModule.forRoot(typeOrmConfig), CourseModule],
-  controllers: [AppController, LessonController],
-  providers: [AppService, LessonService],
+  imports: [StudentModule,LessonModule, TypeOrmModule.forRoot(typeOrmConfig), CourseModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
