@@ -11,6 +11,7 @@ import {
 import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './Course.entity';
 import { CourseService } from './Course.service';
+import { StudentService } from 'src/Student/student.service';
 
 @Controller('Course')
 export class CourseController {
@@ -43,4 +44,11 @@ export class CourseController {
   PublishCourse(@Param('CourseId') CourseId: string): Promise<Course> {
     return this.CourseService.PublishCourse(CourseId);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  InsertStudent(@Request() req):Promise<any>{
+    return StudentService.;
+  }
+
 }
