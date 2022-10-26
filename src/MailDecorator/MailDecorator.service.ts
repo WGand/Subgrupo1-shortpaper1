@@ -3,8 +3,8 @@ import nodemailer = require('nodemailer');
 
 @Injectable()
 export class MailDecoratorService {
-  
-  
+
+  //Codigo tomado y adaptado desde nodemailer
     enviarcorreo(){ 
     
      const transporter = nodemailer.createTransport({
@@ -12,9 +12,17 @@ export class MailDecoratorService {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: 'marcosjduque2@gmail.com', // generated ethereal user
-          pass: '41234', // generated ethereal password
+          user: 'corsiucabdonotreply@gmail.com', // generated ethereal user
+          pass: 'Calonzo123*', // generated ethereal password
         },
       });
 }
+  
+   infocorreo(){
+
+
+
+
+  }
+
 }
