@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './course.entity';
+import { CourseStateEnum } from './CourseStateEnum';
 
 @Injectable()
 export class CourseService {
@@ -15,6 +16,7 @@ export class CourseService {
   }
 
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
+
     return this.CourseRepository.save(newCourse);
   }
 
@@ -39,7 +41,7 @@ export class CourseService {
 
   async PublishCourse(CourseId: string): Promise<Course> {
     const ToPublish = await this.CourseRepository.findOneById(CourseId);
-    ToPublish.state = 2;
+    ToPublish.state = CourseStateEnum.Published;
     console.log('Se ha publicado el curso');
     return this.CourseRepository.save(ToPublish);
   }
