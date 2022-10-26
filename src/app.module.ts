@@ -6,9 +6,9 @@ import { AppService } from './app.service';
 import { StudentModule } from './Student/student.module';
 import { MessageService } from './Message/message.service';
 import { MessageController } from './Message/message.controller';
-import { TypeLessonService } from './type-lesson/type-lesson.service';
-import { TypeLessonController } from './type-lesson/type-lesson.controller';
-import { StrategyImageModule } from './strategy-image/strategyImage.module';
+import { StrategyTextService } from './strategyText/strategyText.service';
+import { StrategyTextController } from './strategyText/strategyText.controller';
+import { StrategyImageModule } from './strategyText/strategyText.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { StrategyImageModule } from './strategy-image/strategyImage.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     StrategyImageModule,
   ],
-  controllers: [AppController, MessageController, TypeLessonController],
-  providers: [AppService, MessageService, TypeLessonService],
+  controllers: [AppController, MessageController, StrategyTextController],
+  providers: [AppService, MessageService, StrategyTextService],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { StrategyImageService } from './strategyImage.service';
+import { StrategyImageService } from './strategyText.service';
 
 describe('StrategyImageService', () => {
   let service: StrategyImageService;
