@@ -24,7 +24,7 @@ import {
     Category: string[];
   
     @Column('text', { array: true})
-    Keywords: string[];
+    keywords: string[];
 
     @Column()
     Strategy: StrategyEnum;

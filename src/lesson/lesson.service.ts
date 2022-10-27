@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { strategyText } from 'src/strategyText/strategyText.entity';
-import { strategyVideo } from 'src/strategyVideo/strategyVideo.entity';
+import { UpdateLessonDto } from './Update Lesson.dto';
 import { Repository } from 'typeorm';
 import { getSystemErrorMap } from 'util';
 import { CreateLessonDto } from './CreateLesson.dto';
@@ -12,8 +11,6 @@ export class LessonService {
 
     constructor(
         @InjectRepository(Lesson) private LessonRepository: Repository<Lesson>,
-        @InjectRepository(Lesson) private strategyTextRepository: Repository<strategyText>,
-        @InjectRepository(Lesson) private strategyVideoRepository: Repository<strategyVideo>
       ) {}
     
       async findAll(params): Promise<Lesson[]> {
@@ -31,10 +28,11 @@ export class LessonService {
 
   async updateLesson(
     LessonId: string,
-    newLesson: CreateLessonDto,
+    ToUpdateLesson: UpdateLessonDto,
   ): Promise<Lesson> {
     const toUpdate = await this.LessonRepository.findOneById(LessonId);
-    const updated = Object.assign(toUpdate, newLesson);
+    const updated = Object.assign(toUpdate, ToUpdateLesson);
+    console.log(ToUpdateLesson);
     return this.LessonRepository.save(updated);
   }
 
