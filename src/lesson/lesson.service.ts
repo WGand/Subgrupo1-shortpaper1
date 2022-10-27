@@ -11,7 +11,7 @@ export class LessonService {
 
     constructor(
         @InjectRepository(Lesson) private LessonRepository: Repository<Lesson>,
-        @InjectRepository(Lesson) private strategyTextRepository: Repository<strategyText>
+        @InjectRepository(Lesson) private strategyTextRepository: Repository<strategyText>,
         @InjectRepository(Lesson) private strategyVideoRepository: Repository<strategyVideo>
       ) {}
     
