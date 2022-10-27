@@ -1,0 +1,4 @@
+2022-10-26 21:39:04 - [I] Starting Nest application...
+2022-10-26 21:39:04 - [I] TypeOrmModule dependencies initialized
+2022-10-26 21:39:04 - [I] PassportModule dependencies initialized
+2022-10-26 21:39:04 - [I] JwtModule dependencies initialized
