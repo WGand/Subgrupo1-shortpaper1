@@ -11,7 +11,7 @@ export class MailDecoratorService {
       secure: false, // true for 465, false for other ports
       auth: {
         user: 'corsiucabdonotreply@gmail.com', // generated ethereal user
-        pass: 'Calonzo123*', // generated ethereal password
+        pass: 'bgwqbgdaindpmjzl', // generated ethereal password
       },
     });
     await transporter.sendMail({
