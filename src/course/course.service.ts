@@ -18,7 +18,7 @@ export class CourseService {
 
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
     newCourse.Student.forEach(element => {
-      if (element.suscriptionState.type == StudentSuscriptionStateEnum.Blocked)
+      if ((element.suscriptionState.type == StudentSuscriptionStateEnum.Blocked) || (element.suscriptionState.type == null))
         throw new UnauthorizedException ('Uno de los estudiantes no ha pagado')
     });
       return this.CourseRepository.save(newCourse);
