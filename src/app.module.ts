@@ -8,13 +8,17 @@ import { MessageService } from './Message/message.service';
 import { MessageController } from './Message/message.controller';
 import { StrategyTextService } from './strategyText/strategyText.service';
 import { StrategyTextController } from './strategyText/strategyText.controller';
-import { StrategyImageModule } from './strategyText/strategyText.module';
+import { StrategyTextModule } from './strategyText/strategyText.module';
+import { StrategyVideoService } from './strategy-video/strategyVideo.service';
+import { StrategyVideoController } from './strategy-video/strategyVideo.controller';
+import { StrategyVideoModule } from './strategy-video/strategyVideo.module';
 
 @Module({
   imports: [
     StudentModule,
     TypeOrmModule.forRoot(typeOrmConfig),
-    StrategyImageModule,
+    StrategyTextModule,
+    StrategyVideoModule,
   ],
   controllers: [AppController, MessageController],
   providers: [AppService, MessageService],

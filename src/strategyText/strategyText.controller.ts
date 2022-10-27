@@ -7,7 +7,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { createStudentDto } from 'src/Student/createStudent.dto';
 
 import { strategyTextDto } from './strategyText.dto';
 import { strategyText } from './strategyText.entity';
@@ -21,14 +20,14 @@ export class StrategyTextController {
   findStrategyText(
     @Param('strategyTextId') strategyTextId: string,
   ): Promise<strategyText> {
-    return this.strategyTextService.findStrategyText(strategyTextId);
+    return this.strategyTextService.findStrategy(strategyTextId);
   }
 
   @Post()
   createStrategyText(
     @Body() newStrategyText: strategyTextDto,
   ): Promise<strategyText> {
-    return this.strategyTextService.createStrategyTextService(newStrategyText);
+    return this.strategyTextService.createStrategyService(newStrategyText);
   }
 
   @Put(':strategyTextId')
@@ -36,7 +35,7 @@ export class StrategyTextController {
     @Param('strategyTextId') strategyTextId: string,
     @Body() updateStrategyText: strategyTextDto,
   ): Promise<strategyText> {
-    return this.strategyTextService.updateStrategyText(
+    return this.strategyTextService.updateStrategy(
       strategyTextId,
       updateStrategyText,
     );
@@ -46,6 +45,6 @@ export class StrategyTextController {
   deleteStrategyText(
     @Param('strategyTextId') strategyTextId: string,
   ): Promise<strategyText> {
-    return this.strategyTextService.deleteStrategyText(strategyTextId);
+    return this.strategyTextService.deleteStrategy(strategyTextId);
   }
 }

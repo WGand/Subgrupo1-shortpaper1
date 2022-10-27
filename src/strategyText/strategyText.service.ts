@@ -11,25 +11,26 @@ export class StrategyTextService {
     private strategyTextRepository: Repository<strategyText>,
   ) {}
 
-  createStrategyTextService(
+  createStrategyService(
+    /* CreateLesson */
     newStrategyText: strategyTextDto,
   ): Promise<strategyText> {
     return this.strategyTextRepository.save(newStrategyText);
   }
 
-  async findStrategyText(strategyTextId: string) {
+  async findStrategy(strategyTextId: string) {
     return await this.strategyTextRepository.findOne({
       where: { id: parseInt(strategyTextId) },
     });
   }
 
-  async deleteStrategyText(strategyTextId: string): Promise<any> {
+  async deleteStrategy(strategyTextId: string): Promise<any> {
     return await this.strategyTextRepository.delete({
       id: parseInt(strategyTextId),
     });
   }
 
-  async updateStrategyText(
+  async updateStrategy(
     strategyTextId: string,
     newStrategyText: strategyTextDto,
   ): Promise<strategyText> {

@@ -9,4 +9,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [StrategyTextService],
   controllers: [StrategyTextController],
 })
-export class StrategyImageModule {}
+export class StrategyTextModule {}
