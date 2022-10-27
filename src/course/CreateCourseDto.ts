@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 import { Student } from 'src/Student/student.entity';
+import { CourseStateEnum } from './CourseStateEnum';
 
 export class CreateCourseDto {
   @IsString()
@@ -11,5 +12,7 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   keywords: string[];
+
+  State: CourseStateEnum;
 
 }

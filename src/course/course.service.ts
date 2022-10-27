@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './CreateCourseDto';
+import { UpdateCourseDto } from './UpdateCourseDto';
 import { Course } from './course.entity';
 
 
@@ -25,10 +26,10 @@ export class CourseService {
 
   async updateCourse(
     CourseId: string,
-    newCourse: CreateCourseDto,
+    UpdateCourse: UpdateCourseDto,
   ): Promise<Course> {
     const toUpdate = await this.CourseRepository.findOneById(CourseId);
-    const updated = Object.assign(toUpdate, newCourse);
+    const updated = Object.assign(toUpdate, UpdateCourse);
     return this.CourseRepository.save(updated);
   }
 

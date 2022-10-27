@@ -11,6 +11,7 @@ import {
 import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './course.entity';
 import { CourseService } from './course.service';
+import { UpdateCourseDto } from './UpdateCourseDto';
 
 @Controller('Course')
 export class CourseController {
@@ -34,7 +35,7 @@ export class CourseController {
   @Put(':CourseId')
   updateCourse(
     @Param('CourseId') CourseId: string,
-    @Body() updateCourse: CreateCourseDto,
+    @Body() updateCourse: UpdateCourseDto,
   ): Promise<Course> {
     return this.CourseService.updateCourse(CourseId, updateCourse);
   }
