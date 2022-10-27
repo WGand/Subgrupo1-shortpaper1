@@ -6,9 +6,9 @@ export class MailDecoratorService {
   //Codigo tomado y adaptado desde nodemailer
   async enviarcorreo(email: string, message: string, subject: string) {
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.email',
-      port: 465,
-      secure: true, // true for 465, false for other ports
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: 'corsiucabdonotreply@gmail.com', // generated ethereal user
         pass: 'Calonzo123*', // generated ethereal password
