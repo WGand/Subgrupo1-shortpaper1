@@ -12,5 +12,4 @@ export class CreateCourseDto {
   @IsNotEmpty()
   keywords: string[];
 
-  Student:Student[];
 }
