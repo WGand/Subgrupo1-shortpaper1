@@ -35,11 +35,11 @@ import {
 
     @OneToOne(() => strategyText, { cascade: true })
     @JoinColumn({ name: 'LessonToContentText' })
-    Texto : number
+    Texto : strategyText
 
     @OneToOne(() => strategyVideo, { cascade: true })
     @JoinColumn({ name: 'LessonToContentVideo' })
-    Video : number
+    Video : strategyVideo
 
   }
   
