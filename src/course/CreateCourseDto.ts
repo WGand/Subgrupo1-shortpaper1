@@ -7,10 +7,10 @@ export class CreateCourseDto {
   title: string;
 
   @IsNotEmpty()
-  Category: string[];
+  category: string[];
 
   @IsNotEmpty()
-  Keywords: string[];
+  keywords: string[];
 
   Student:Student[];
 }

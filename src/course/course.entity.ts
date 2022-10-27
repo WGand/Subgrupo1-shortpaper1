@@ -21,7 +21,7 @@ export class Course extends BaseEntity {
   category: string[];
 
   @Column('text', { array: true, default: {} })
-  Keywords: string[];
+  keywords: string[];
 
   @Column()
   state: CourseStateEnum;
