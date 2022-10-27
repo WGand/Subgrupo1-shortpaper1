@@ -4,7 +4,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MailDecoratorService } from 'src/MailDecorator/MailDecorator.service';
 import { Repository } from 'typeorm';
 import { createStudentDto } from './createStudent.dto';
 import { Student } from './student.entity';
@@ -14,19 +13,17 @@ import { updateStudentDto } from './updateStudent.dto';
 export class StudentService {
   constructor(
     @InjectRepository(Student) private studentRepository: Repository<Student>,
-    private mailDerecorator: MailDecoratorService,
   ) {}
 
-  async sendMail(email: string) {
-    const user = await this.findOne(email);
-    this.mailDerecorator.enviarcorreo(user.email, 'test', 'test');
+  async findAll(): Promise<Student[]> {
+    return await this.studentRepository.query('SELECT * FROM STUDENT');
   }
 
   async areCredentialsValid(email: string) {
     const user = await this.studentRepository.findOne({
       where: { email: email },
     });
-
+    console.log(user);
     if (user) {
       return user;
     }
