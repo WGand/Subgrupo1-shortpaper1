@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { strategyText } from 'src/strategyText/strategyText.entity';
+import { strategyVideo } from 'src/strategyVideo/strategyVideo.entity';
 import { Repository } from 'typeorm';
 import { CreateLessonDto } from './CreateLesson.dto';
 import { Lesson } from './Lesson.entity';
@@ -9,6 +11,8 @@ export class LessonService {
 
     constructor(
         @InjectRepository(Lesson) private LessonRepository: Repository<Lesson>,
+        @InjectRepository(Lesson) private strategyTextRepository: Repository<strategyText>,
+        @InjectRepository(Lesson) private strategyVideoRepository: Repository<strategyVideo>
       ) {}
     
       async findAll(params): Promise<Lesson[]> {
@@ -37,5 +41,4 @@ export class LessonService {
       where: { LessonId: parseInt(LessonId) },
     });
   }
-
 }

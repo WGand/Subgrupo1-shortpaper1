@@ -4,9 +4,13 @@ import { typeOrmConfig } from 'config/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentModule } from './Student/student.module';
-import { CourseModule } from './course/Course.module';
 import { AuthModule } from './auth/auth.module';
+import { MessageService } from './Message/message.service';
+import { MessageController } from './Message/message.controller';
 import { LessonModule } from './lesson/Lesson.module';
+import { CourseModule } from './course/Course.module';
+import { StrategyTextModule } from './strategyText/strategyText.module';
+import { StrategyVideoModule } from './strategyVideo/strategyVideo.module';
 
 @Module({
   imports: [
@@ -15,6 +19,8 @@ import { LessonModule } from './lesson/Lesson.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     AuthModule,
     CourseModule,
+    StrategyTextModule,
+    StrategyVideoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
