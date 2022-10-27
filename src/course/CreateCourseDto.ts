@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import { Student } from 'src/Student/student.entity';
 
 export class CreateCourseDto {
   @IsString()
@@ -10,4 +11,6 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   Keywords: string[];
+
+  Student:Student[];
 }

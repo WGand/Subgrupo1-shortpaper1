@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './CreateCourseDto';
 import { Course } from './course.entity';
-import { CourseStateEnum } from './CourseStateEnum';
+import { StudentSuscriptionStateEnum } from 'src/studentsuscriptionstate/StudentSuscriptionStateEnum';
 
 
 @Injectable()
@@ -17,7 +17,11 @@ export class CourseService {
   }
 
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
-    return this.CourseRepository.save(newCourse);
+    newCourse.Student.forEach(element => {
+      if (element.suscriptionState.type == StudentSuscriptionStateEnum.Blocked)
+        throw new UnauthorizedException ('Uno de los estudiantes no ha pagado')
+    });
+      return this.CourseRepository.save(newCourse);
   }
 
   async deleteCourse(CourseId: string): Promise<any> {
@@ -41,7 +45,7 @@ export class CourseService {
 
   async PublishCourse(CourseId: string): Promise<Course> {
     const ToPublish = await this.CourseRepository.findOneById(CourseId);
-    ToPublish.state = CourseStateEnum.Published;
+    ToPublish.state = 2;
     console.log('Se ha publicado el curso');
     return this.CourseRepository.save(ToPublish);
   }
