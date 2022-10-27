@@ -7,7 +7,7 @@ import {
   JoinTable,
 } from 'typeorm';
 import { Student } from 'src/Student/student.entity';
-import { CourseSuscriptionStateEnum } from './CourseSubscriptionStateEnum';
+import { CourseStateEnum } from './CourseStateEnum';
 
 @Entity('course')
 export class Course extends BaseEntity {
@@ -21,12 +21,12 @@ export class Course extends BaseEntity {
   category: string[];
 
   @Column('text', { array: true, default: {} })
-  Keywords: string[];
+  keywords: string[];
 
-  @Column()
-  state: CourseSuscriptionStateEnum;
+  @Column({ nullable: true, default: '1' })
+  state: CourseStateEnum;
 
-  @ManyToMany(() => Student)
-  @JoinTable({ name: 'StudentToCourse' })
+  @ManyToMany(() => Student, { cascade: true })
+  @JoinTable({ name: 'studenttocourse' })
   Student: Student[];
 }

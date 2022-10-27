@@ -30,12 +30,6 @@ export class StudentController {
     return this.studentService.findStudent(req.user.email);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('mail')
-  mail(@Request() req): void {
-    this.studentService.sendMail(req.user.email);
-  }
-
   @Post()
   signUp(@Body() newStudent: createStudentDto): Promise<Student> {
     return this.studentService.createStudent(newStudent);

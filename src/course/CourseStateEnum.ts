@@ -1,4 +1,4 @@
-export enum CourseSuscriptionStateEnum {
+export enum CourseStateEnum {
   Created,
   Published,
   Removed,
