@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Lesson } from './Lesson.entity';
-import { LessonService } from './Lesson.service';
-import { LessonController } from './Lesson.controller';
+import { LessonService } from './lesson.service';
+import { LessonController } from './lesson.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StrategyEnum } from './StrategyEnum';
 

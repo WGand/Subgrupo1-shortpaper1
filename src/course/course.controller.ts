@@ -9,8 +9,8 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateCourseDto } from './CreateCourseDto';
-import { Course } from './Course.entity';
-import { CourseService } from './Course.service';
+import { Course } from './course.entity';
+import { CourseService } from './course.service';
 
 @Controller('Course')
 export class CourseController {
@@ -43,5 +43,4 @@ export class CourseController {
   PublishCourse(@Param('CourseId') CourseId: string): Promise<Course> {
     return this.CourseService.PublishCourse(CourseId);
   }
-
 }

@@ -6,15 +6,15 @@ import { AppService } from './app.service';
 import { StudentModule } from './Student/student.module';
 import { CourseModule } from './course/Course.module';
 import { AuthModule } from './auth/auth.module';
-import { LessonModule } from './lesson/lesson.module';
+import { LessonModule } from './lesson/Lesson.module';
 
 @Module({
   imports: [
     StudentModule,
-    LessonModule, 
+    LessonModule,
     TypeOrmModule.forRoot(typeOrmConfig),
     AuthModule,
-    CourseModule
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
