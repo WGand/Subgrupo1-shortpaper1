@@ -19,10 +19,13 @@ export class CreateLessonDto {
   @IsOptional()
   Strategy: StrategyEnum;
 
+  @IsOptional()
   Course: Course
 
+  @IsOptional()
   Texto : strategyText
-  
+ 
+  @IsOptional()
   Video : strategyVideo
 
 }
