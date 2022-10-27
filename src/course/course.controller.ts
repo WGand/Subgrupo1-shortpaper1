@@ -37,6 +37,7 @@ export class CourseController {
     @Param('CourseId') CourseId: string,
     @Body() updateCourse: UpdateCourseDto,
   ): Promise<Course> {
+    console.log(updateCourse)
     return this.CourseService.updateCourse(CourseId, updateCourse);
   }
 

@@ -28,7 +28,7 @@ export class CourseService {
     CourseId: string,
     UpdateCourse: UpdateCourseDto,
   ): Promise<Course> {
-    const toUpdate = await this.CourseRepository.findOneById(CourseId);
+    const toUpdate = await this.CourseRepository.findOne({where:{CourseId:CourseId}});
     const updated = Object.assign(toUpdate, UpdateCourse);
     return this.CourseRepository.save(updated);
   }
