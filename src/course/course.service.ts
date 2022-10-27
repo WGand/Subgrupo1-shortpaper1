@@ -102,7 +102,7 @@ export class CourseService {
     ToPublish.state = 2;
     const arrayStudent = await this.studentService.findAll();
     arrayStudent.forEach((element) => {
-      this.sendMail(element.email, ToPublish.title);
+      this.sendMail(element.email, ToPublish.title,'Se ha Publicado un curso','Publicado');
     });
     return this.CourseRepository.save(ToPublish);
   }
