@@ -30,8 +30,8 @@ export class CourseController {
   }
 
   @Delete(':CourseId')
-  deleteCourse(@Param('CourseId') CourseId: string): Promise<Course> {
-    return this.CourseService.deleteCourse(CourseId);
+  DeleteCourse(@Param('CourseId') CourseId: string): Promise<Course> {
+    return this.CourseService.DeleteCourse(CourseId);
   }
 
   @Put(':CourseId')
@@ -45,6 +45,11 @@ export class CourseController {
   @Put('publish/:CourseId')
   PublishCourse(@Param('CourseId') CourseId: string): Promise<Course> {
     return this.CourseService.PublishCourse(CourseId);
+  }
+
+  @Put('Suspend/:CourseId')
+  SuspendCourse(@Param('CourseId') CourseId: string): Promise<Course> {
+    return this.CourseService.SuspendCourse(CourseId);
   }
 
   @UseGuards(JwtAuthGuard)

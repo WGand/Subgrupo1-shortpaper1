@@ -18,12 +18,12 @@ export class CourseService {
     private studentSuscriptionStateService: StudentsuscriptionstateService,
   ) {}
 
-  async sendMail(email: string, tituloCurso: string) {
+  async sendMail(email: string, tituloCurso: string, Message:string,State:string) {
     const user = await this.studentService.findOne(email);
     this.mailDecoratorService.enviarcorreo(
       user.email,
-      tituloCurso + ' está dispnible',
-      'Nuevo Curso Disponible',
+      tituloCurso + State,
+      Message,
     );
   }
 
@@ -35,8 +35,24 @@ export class CourseService {
     return this.CourseRepository.save(newCourse);
   }
 
-  async deleteCourse(CourseId: string): Promise<any> {
-    return await this.CourseRepository.delete({ CourseId: parseInt(CourseId) });
+  async DeleteCourse(CourseId: string): Promise<Course> {
+    const ToPublish = await this.CourseRepository.findOneById(CourseId);
+    ToPublish.state = 3;
+    const arrayStudent = await this.studentService.findAll();
+    arrayStudent.forEach((element) => {
+      this.sendMail(element.email, ToPublish.title,'Se ha Elimininado un curso','Eliminado');
+    });
+    return this.CourseRepository.save(ToPublish);
+  }
+
+  async SuspendCourse(CourseId: string): Promise<Course> {
+    const ToPublish = await this.CourseRepository.findOneById(CourseId);
+    ToPublish.state = 4;
+    const arrayStudent = await this.studentService.findAll();
+    arrayStudent.forEach((element) => {
+      this.sendMail(element.email, ToPublish.title,'Se ha Suspendido un curso','Suspendido');
+    });
+    return this.CourseRepository.save(ToPublish);
   }
 
   async suscriptionToCourse(email: string, CourseId: string): Promise<any> {
