@@ -7,11 +7,7 @@ import { StudentModule } from './Student/student.module';
 import { StrategyTextModule } from './strategyText/strategyText.module';
 import { CourseModule } from './course/Course.module';
 import { AuthModule } from './auth/auth.module';
-import { MessageService } from './Message/message.service';
-import { MessageController } from './Message/message.controller';
 import { LessonModule } from './lesson/Lesson.module';
-import { CourseModule } from './course/Course.module';
-import { StrategyTextModule } from './strategyText/strategyText.module';
 import { StrategyVideoModule } from './strategyVideo/strategyVideo.module';
 
 @Module({
