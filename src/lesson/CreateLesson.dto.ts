@@ -8,7 +8,7 @@ import { StrategyEnum } from './StrategyEnum';
 export class CreateLessonDto {
   @IsString()
   @IsNotEmpty()
-  Title: string;
+  title: string;
 
   @IsNotEmpty()
   Category: string[];

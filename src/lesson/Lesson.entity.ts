@@ -18,7 +18,7 @@ import {
     LessonId: number;
   
     @Column()
-    Title: string;
+    title: string;
   
     @Column('text', { array: true})
     Category: string[];
