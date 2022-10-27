@@ -1,34 +1,76 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, PreconditionFailedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './CreateCourseDto';
 import { UpdateCourseDto } from './UpdateCourseDto';
 import { Course } from './course.entity';
-
+import { MailDecoratorService } from 'src/MailDecorator/MailDecorator.service';
+import { StudentService } from 'src/Student/student.service';
+import { StudentSuscriptionStateEnum } from 'src/studentsuscriptionstate/StudentSuscriptionStateEnum';
+import { StudentsuscriptionstateService } from 'src/studentsuscriptionstate/studentsuscriptionstate.service';
 
 @Injectable()
 export class CourseService {
   constructor(
     @InjectRepository(Course) private CourseRepository: Repository<Course>,
+    private mailDecoratorService: MailDecoratorService,
+    private studentService: StudentService,
+    private studentSuscriptionStateService: StudentsuscriptionstateService,
   ) {}
+
+  async sendMail(email: string, tituloCurso: string) {
+    const user = await this.studentService.findOne(email);
+    this.mailDecoratorService.enviarcorreo(
+      user.email,
+      tituloCurso + ' está dispnible',
+      'Nuevo Curso Disponible',
+    );
+  }
 
   async findAll(params): Promise<Course[]> {
     return await this.CourseRepository.find();
   }
 
   createCourse(newCourse: CreateCourseDto): Promise<Course> {
-      return this.CourseRepository.save(newCourse);
+    return this.CourseRepository.save(newCourse);
   }
 
   async deleteCourse(CourseId: string): Promise<any> {
     return await this.CourseRepository.delete({ CourseId: parseInt(CourseId) });
   }
 
+  async suscriptionToCourse(email: string, CourseId: string): Promise<any> {
+    const user = await this.studentService.findOne(email);
+    console.log(user);
+    const course = await this.CourseRepository.findOne({
+      where: { CourseId: parseInt(CourseId) },
+    });
+    course.Student = await this.CourseRepository.query(
+      'SELECT * FROM StudentToCourse',
+    );
+    user.suscriptionState =
+      await this.studentSuscriptionStateService.findSuscription(
+        user.suscriptionState_id,
+      );
+    if (user.suscriptionState !== undefined) {
+      if (
+        user.suscriptionState.type === StudentSuscriptionStateEnum.Monthly &&
+        course.state === 2
+      ) {
+        course.Student.push(user);
+        return this.CourseRepository.save(course);
+      }
+    }
+    throw new PreconditionFailedException('usuario bloqueado');
+  }
+
   async updateCourse(
     Id: string,
     UpdateCourse: UpdateCourseDto,
   ): Promise<Course> {
-    const toUpdate = await this.CourseRepository.findOne({ where:{ CourseId:parseInt(Id) } });
+    const toUpdate = await this.CourseRepository.findOne({
+      where: { CourseId: parseInt(Id) },
+    });
     const updated = Object.assign(toUpdate, UpdateCourse);
     return this.CourseRepository.save(updated);
   }
@@ -42,8 +84,10 @@ export class CourseService {
   async PublishCourse(CourseId: string): Promise<Course> {
     const ToPublish = await this.CourseRepository.findOneById(CourseId);
     ToPublish.state = 2;
-    console.log('Se ha publicado el curso');
+    const arrayStudent = await this.studentService.findAll();
+    arrayStudent.forEach((element) => {
+      this.sendMail(element.email, ToPublish.title);
+    });
     return this.CourseRepository.save(ToPublish);
   }
-
 }
