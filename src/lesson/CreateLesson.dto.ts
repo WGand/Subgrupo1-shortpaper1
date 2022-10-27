@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsOptional,IsNotEmpty, IsString } from 'class-validator';
+import { Course } from 'src/course/course.entity';
 import { strategyText } from 'src/strategyText/strategyText.entity';
 import { strategyVideo } from 'src/strategyVideo/strategyVideo.entity';
 import { Student } from 'src/Student/student.entity';
@@ -7,15 +8,18 @@ import { StrategyEnum } from './StrategyEnum';
 export class CreateLessonDto {
   @IsString()
   @IsNotEmpty()
-  title: string;
+  Title: string;
 
   @IsNotEmpty()
-  category: string[];
+  Category: string[];
 
   @IsNotEmpty()
-  keywords: string[];
-
+  Keywords: string[];
+  
+  @IsOptional()
   Strategy: StrategyEnum;
+
+  Course: Course
 
   Texto : strategyText
   

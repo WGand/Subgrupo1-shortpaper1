@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { strategyText } from 'src/strategyText/strategyText.entity';
 import { strategyVideo } from 'src/strategyVideo/strategyVideo.entity';
 import { Repository } from 'typeorm';
+import { getSystemErrorMap } from 'util';
 import { CreateLessonDto } from './CreateLesson.dto';
 import { Lesson } from './Lesson.entity';
 
@@ -20,6 +21,7 @@ export class LessonService {
       }  
     
   createLesson(newLesson: CreateLessonDto): Promise<Lesson> {
+    console.log(newLesson);
     return this.LessonRepository.save(newLesson);
   }
 

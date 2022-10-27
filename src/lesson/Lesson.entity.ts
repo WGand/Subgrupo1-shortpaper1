@@ -18,12 +18,12 @@ import {
     LessonId: number;
   
     @Column()
-    title: string;
+    Title: string;
   
-    @Column('text', { array: true, default: {} })
-    category: string[];
+    @Column('text', { array: true})
+    Category: string[];
   
-    @Column('text', { array: true, default: {} })
+    @Column('text', { array: true})
     Keywords: string[];
 
     @Column()
