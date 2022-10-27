@@ -9,8 +9,8 @@ import {
   } from 'typeorm';
   import { Course } from 'src/course/course.entity';
   import { StrategyEnum } from './StrategyEnum';
-  //import { strategyText } from 'src/strategy/strategyText.entity';
-  //import { strategyVideo } from 'src/strategy/strategyVideo.entity';
+  import { strategyVideo } from 'src/strategyVideo/strategyVideo.entity';
+  import { strategyText } from 'src/strategyText/strategyText.entity';
 
   @Entity('Lesson')
   export class Lesson extends BaseEntity {
@@ -33,13 +33,13 @@ import {
     @JoinColumn({ name: 'LessonToCourse' })
     Course: Course;
 
-    //@OneToOne(() => strategyText, { cascade: true })
-    //@JoinColumn({ name: 'LessonToContentText' })
-    //Texto : Texto
+    @OneToOne(() => strategyText, { cascade: true })
+    @JoinColumn({ name: 'LessonToContentText' })
+    Texto : number
 
-    //@OneToOne(() => strategyVideo, { cascade: true })
-    //@JoinColumn({ name: 'LessonToContentVideo' })
-    //Video : Video
+    @OneToOne(() => strategyVideo, { cascade: true })
+    @JoinColumn({ name: 'LessonToContentVideo' })
+    Video : number
 
   }
   
