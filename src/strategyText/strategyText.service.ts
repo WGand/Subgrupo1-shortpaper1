@@ -11,14 +11,12 @@ export class StrategyTextService {
     private strategyTextRepository: Repository<strategyText>,
   ) {}
 
-  @Post()
   createStrategyTextService(
     newStrategyText: strategyTextDto,
   ): Promise<strategyText> {
     return this.strategyTextRepository.save(newStrategyText);
   }
 
-  @Get(':strategyTextId')
   async findStrategyText(strategyTextId: string) {
     return await this.strategyTextRepository.findOne({
       where: { id: parseInt(strategyTextId) },

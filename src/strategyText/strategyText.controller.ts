@@ -41,4 +41,11 @@ export class StrategyTextController {
       updateStrategyText,
     );
   }
+
+  @Delete(':strategyTextId')
+  deleteStrategyText(
+    @Param('strategyTextId') strategyTextId: string,
+  ): Promise<strategyText> {
+    return this.strategyTextService.deleteStrategyText(strategyTextId);
+  }
 }
