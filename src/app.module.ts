@@ -11,7 +11,8 @@ import { LessonModule } from './lesson/lesson.module';
 @Module({
   imports: [
     StudentModule,
-   LessonModule, TypeOrmModule.forRoot(typeOrmConfig),
+    LessonModule, 
+    TypeOrmModule.forRoot(typeOrmConfig),
     CourseModule,
     AuthModule,
   ],
