@@ -13,8 +13,8 @@ import { LessonModule } from './lesson/lesson.module';
     StudentModule,
     LessonModule, 
     TypeOrmModule.forRoot(typeOrmConfig),
-    CourseModule,
     AuthModule,
+    CourseModule
   ],
   controllers: [AppController],
   providers: [AppService],
