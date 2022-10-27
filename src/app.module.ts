@@ -16,7 +16,7 @@ import { StrategyImageModule } from './strategyText/strategyText.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     StrategyImageModule,
   ],
-  controllers: [AppController, MessageController, StrategyTextController],
-  providers: [AppService, MessageService, StrategyTextService],
+  controllers: [AppController, MessageController],
+  providers: [AppService, MessageService],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { strategyTextDto } from './strategyText.dto';
@@ -11,12 +11,14 @@ export class StrategyTextService {
     private strategyTextRepository: Repository<strategyText>,
   ) {}
 
+  @Post()
   createStrategyTextService(
     newStrategyText: strategyTextDto,
   ): Promise<strategyText> {
     return this.strategyTextRepository.save(newStrategyText);
   }
 
+  @Get(':strategyTextId')
   async findStrategyText(strategyTextId: string) {
     return await this.strategyTextRepository.findOne({
       where: { id: parseInt(strategyTextId) },

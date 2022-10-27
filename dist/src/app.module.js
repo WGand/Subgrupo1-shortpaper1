@@ -15,8 +15,6 @@ const app_service_1 = require("./app.service");
 const student_module_1 = require("./Student/student.module");
 const message_service_1 = require("./Message/message.service");
 const message_controller_1 = require("./Message/message.controller");
-const strategyText_service_1 = require("./strategyText/strategyText.service");
-const strategyText_controller_1 = require("./strategyText/strategyText.controller");
 const strategyText_module_1 = require("./strategyText/strategyText.module");
 let AppModule = class AppModule {
 };
@@ -27,8 +25,8 @@ AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRoot(config_service_1.typeOrmConfig),
             strategyText_module_1.StrategyImageModule,
         ],
-        controllers: [app_controller_1.AppController, message_controller_1.MessageController, strategyText_controller_1.StrategyTextController],
-        providers: [app_service_1.AppService, message_service_1.MessageService, strategyText_service_1.StrategyTextService],
+        controllers: [app_controller_1.AppController, message_controller_1.MessageController],
+        providers: [app_service_1.AppService, message_service_1.MessageService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
